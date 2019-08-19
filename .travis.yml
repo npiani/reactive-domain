@@ -10,6 +10,11 @@ branches:
     - /.*/
 
 script: 
+  - echo $TRAVIS_BRANCH
+  - echo $TRAVIS_PULL_REQUEST
+  - echo $TRAVIS_PULL_REQUEST_BRANCH
+  - echo $TRAVIS_PULL_REQUEST_SHA
+  - echo $STABLE
   - dotnet restore ./src/ReactiveDomain.sln
   - dotnet msbuild ./src/ReactiveDomain.sln
   - dotnet test ./src/ReactiveDomain.Messaging.Tests/ReactiveDomain.Messaging.Tests.csproj
@@ -18,11 +23,6 @@ script:
   - dotnet test ./src/ReactiveDomain.Transport.Tests/ReactiveDomain.Transport.Tests.csproj
 
 after_success:  
-  - echo $TRAVIS_BRANCH
-  - echo $TRAVIS_PULL_REQUEST
-  - echo $TRAVIS_PULL_REQUEST_BRANCH
-  - echo $TRAVIS_PULL_REQUEST_SHA
-  - echo $STABLE
   - if [[ $TRAVIS_BRANCH = master ]]; then echo 'This is master after success'; fi;
   - if [[ $TRAVIS_BRANCH = master && $TRAVIS_EVENT_TYPE = push ]]; then echo "Master and Push";
   - if [[ $TRAVIS_BRANCH = master && $STABLE = true && $TRAVIS_EVENT_TYPE = api]]; then echo "Deploy Stable nuget";
