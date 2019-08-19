@@ -9,6 +9,7 @@ branches:
     - master
     - /.*/
 
+
 script: 
   - echo $TRAVIS_BRANCH
   - echo $TRAVIS_PULL_REQUEST
@@ -21,9 +22,10 @@ script:
   - dotnet test ./src/ReactiveDomain.Foundation.Tests/ReactiveDomain.Foundation.Tests.csproj  
   - dotnet test ./src/ReactiveDomain.PrivateLedger.Tests/ReactiveDomain.PrivateLedger.Tests.csproj
   - dotnet test ./src/ReactiveDomain.Transport.Tests/ReactiveDomain.Transport.Tests.csproj
+  - if [[ $STABLE = false ]]; then echo "Deploy Unstable nuget";
 
-after_success:  
-  - if [[ $TRAVIS_BRANCH = master ]]; then echo 'This is master after success'; fi;
-  - if [[ $TRAVIS_BRANCH = master && $TRAVIS_EVENT_TYPE = push ]]; then echo "Master and Push";
-  - if [[ $TRAVIS_BRANCH = master && $STABLE = true && $TRAVIS_EVENT_TYPE = api]]; then echo "Deploy Stable nuget";
-  - if [[ $TRAVIS_BRANCH = master && $STABLE = false ]]; then echo "Deploy Unstable nuget";
+#after_success:  
+ # - if [[ $TRAVIS_BRANCH = master ]]; then echo 'This is master after success'; fi;
+ # - if [[ $TRAVIS_BRANCH = master && $TRAVIS_EVENT_TYPE = push ]]; then echo "Master and Push";
+ # - if [[ $TRAVIS_BRANCH = master && $STABLE = true && $TRAVIS_EVENT_TYPE = api]]; then echo "Deploy Stable nuget";
+ # - if [[ $STABLE = false ]]; then echo "Deploy Unstable nuget";
