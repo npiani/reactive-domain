@@ -4,6 +4,11 @@ language: csharp
 mono: none
 dotnet: 2.0.0
 
+branches:
+  only:
+    - master
+    - /.*/
+
 script: 
   - dotnet restore ./src/ReactiveDomain.sln
   - dotnet msbuild ./src/ReactiveDomain.sln
@@ -11,3 +16,7 @@ script:
   - dotnet test ./src/ReactiveDomain.Foundation.Tests/ReactiveDomain.Foundation.Tests.csproj  
   - dotnet test ./src/ReactiveDomain.PrivateLedger.Tests/ReactiveDomain.PrivateLedger.Tests.csproj
   - dotnet test ./src/ReactiveDomain.Transport.Tests/ReactiveDomain.Transport.Tests.csproj
+
+after_success:
+  - if [[ $TRAVIS_BRANCH = master ]]; then echo 'This is master after success'; fi;
+  - if [[ $TRAVIS_BRANCH = master && $TRAVIS_EVENT_TYPE = push ]]; then echo "Master and Push";
