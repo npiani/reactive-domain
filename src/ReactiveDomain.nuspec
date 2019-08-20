@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <package>
   <metadata>
     <id>ReactiveDomain</id>
@@ -76,32 +76,32 @@
     </frameworkAssemblies>	
   </metadata>
   <files>
-    <file src="..\..\bld\Release\net452\ReactiveDomain.Core.dll" target="lib\net452" />
-    <file src="..\..\bld\Release\net452\ReactiveDomain.Foundation.dll" target="lib\net452" />  
-    <file src="..\..\bld\Release\net452\ReactiveDomain.Messaging.dll" target="lib\net452" />
-    <file src="..\..\bld\Release\net452\ReactiveDomain.Persistence.dll" target="lib\net452" />	
-    <file src="..\..\bld\Release\net452\ReactiveDomain.PrivateLedger.dll" target="lib\net452" />
-	<file src="..\..\bld\Release\net452\ReactiveDomain.Testing.dll" target="lib\net452" />	
-    <file src="..\..\bld\Release\net452\ReactiveDomain.Transport.dll" target="lib\net452" />	
-    <file src="..\..\bld\Release\net452\ReactiveDomain.UI.dll" target="lib\net452" />
-    <file src="..\..\bld\Release\net452\ReactiveDomain.UI.Testing.dll" target="lib\net452" />		
-	<file src="..\..\bld\Release\net472\ReactiveDomain.Core.dll" target="lib\net472" />	
-    <file src="..\..\bld\Release\net472\ReactiveDomain.Foundation.dll" target="lib\net472" />  
-    <file src="..\..\bld\Release\net472\ReactiveDomain.Messaging.dll" target="lib\net472" />
-    <file src="..\..\bld\Release\net472\ReactiveDomain.Persistence.dll" target="lib\net472" />	
-    <file src="..\..\bld\Release\net472\ReactiveDomain.PrivateLedger.dll" target="lib\net472" />
-    <file src="..\..\bld\Release\net472\ReactiveDomain.Testing.dll" target="lib\net472" />	
-    <file src="..\..\bld\Release\net472\ReactiveDomain.Transport.dll" target="lib\net472" />	
-    <file src="..\..\bld\Release\net472\ReactiveDomain.UI.dll" target="lib\net472" />
-    <file src="..\..\bld\Release\net472\ReactiveDomain.UI.Testing.dll" target="lib\net472" />		
-    <file src="..\..\bld\Release\netstandard2.0\ReactiveDomain.Core.dll" target="lib\netstandard2.0" />
-    <file src="..\..\bld\Release\netstandard2.0\ReactiveDomain.Foundation.dll" target="lib\netstandard2.0" />  
-    <file src="..\..\bld\Release\netstandard2.0\ReactiveDomain.Messaging.dll" target="lib\netstandard2.0" />
-    <file src="..\..\bld\Release\netstandard2.0\ReactiveDomain.Persistence.dll" target="lib\netstandard2.0" />	
-    <file src="..\..\bld\Release\netstandard2.0\ReactiveDomain.PrivateLedger.dll" target="lib\netstandard2.0" />
-    <file src="..\..\bld\Release\netstandard2.0\ReactiveDomain.Testing.dll" target="lib\netstandard2.0" />	
-    <file src="..\..\bld\Release\netstandard2.0\ReactiveDomain.Transport.dll" target="lib\netstandard2.0" />	
-    <file src="..\..\bld\Release\netstandard2.0\ReactiveDomain.UI.dll" target="lib\netstandard2.0" />	
-    <file src="..\..\bld\Release\netstandard2.0\ReactiveDomain.UI.Testing.dll" target="lib\netstandard2.0" />	
+    <file src="..\bld\Release\net452\ReactiveDomain.Core.dll" target="lib\net452" />
+    <file src="..\bld\Release\net452\ReactiveDomain.Foundation.dll" target="lib\net452" />  
+    <file src="..\bld\Release\net452\ReactiveDomain.Messaging.dll" target="lib\net452" />
+    <file src="..\bld\Release\net452\ReactiveDomain.Persistence.dll" target="lib\net452" />	
+    <file src="..\bld\Release\net452\ReactiveDomain.PrivateLedger.dll" target="lib\net452" />
+    <file src="..\bld\Release\net452\ReactiveDomain.Testing.dll" target="lib\net452" />	
+    <file src="..\bld\Release\net452\ReactiveDomain.Transport.dll" target="lib\net452" />	
+    <file src="..\bld\Release\net452\ReactiveDomain.UI.dll" target="lib\net452" />
+    <file src="..\bld\Release\net452\ReactiveDomain.UI.Testing.dll" target="lib\net452" />		
+    <file src="..\bld\Release\net472\ReactiveDomain.Core.dll" target="lib\net472" />	
+    <file src="..\bld\Release\net472\ReactiveDomain.Foundation.dll" target="lib\net472" />  
+    <file src="..\bld\Release\net472\ReactiveDomain.Messaging.dll" target="lib\net472" />
+    <file src="..\bld\Release\net472\ReactiveDomain.Persistence.dll" target="lib\net472" />	
+    <file src="..\bld\Release\net472\ReactiveDomain.PrivateLedger.dll" target="lib\net472" />
+    <file src="..\bld\Release\net472\ReactiveDomain.Testing.dll" target="lib\net472" />	
+    <file src="..\bld\Release\net472\ReactiveDomain.Transport.dll" target="lib\net472" />	
+    <file src="..\bld\Release\net472\ReactiveDomain.UI.dll" target="lib\net472" />
+    <file src="..\bld\Release\net472\ReactiveDomain.UI.Testing.dll" target="lib\net472" />		
+    <file src="..\bld\Release\netstandard2.0\ReactiveDomain.Core.dll" target="lib\netstandard2.0" />
+    <file src="..\bld\Release\netstandard2.0\ReactiveDomain.Foundation.dll" target="lib\netstandard2.0" />  
+    <file src="..\bld\Release\netstandard2.0\ReactiveDomain.Messaging.dll" target="lib\netstandard2.0" />
+    <file src="..\bld\Release\netstandard2.0\ReactiveDomain.Persistence.dll" target="lib\netstandard2.0" />	
+    <file src="..\bld\Release\netstandard2.0\ReactiveDomain.PrivateLedger.dll" target="lib\netstandard2.0" />
+    <file src="..\bld\Release\netstandard2.0\ReactiveDomain.Testing.dll" target="lib\netstandard2.0" />	
+    <file src="..\bld\Release\netstandard2.0\ReactiveDomain.Transport.dll" target="lib\netstandard2.0" />	
+    <file src="..\bld\Release\netstandard2.0\ReactiveDomain.UI.dll" target="lib\netstandard2.0" />	
+    <file src="..\bld\Release\netstandard2.0\ReactiveDomain.UI.Testing.dll" target="lib\netstandard2.0" />	
   </files>  
 </package>
