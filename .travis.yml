@@ -3,7 +3,6 @@ language: csharp
 os: windows
 
 mono: none
-#dotnet: 2.0.0
 
 branches:
   only:
@@ -35,18 +34,3 @@ script:
 
 after_success:
   - powershell -executionpolicy unrestricted -File ./tools/createNuget.ps1
-
-
-
-#  - if [[ $TRAVIS_BRANCH = update-nuspec-for-builds && $STABLE = false ]]; then 
-#	  echo "This is line 2 of the if";
-#	  echo "this is line 3"; 
-#	fi;
-
-#       ./tools/nuget.exe pack ./src/ReactiveDomain.nuspec -p:PackageVersion=3.3.4 --version-suffix "beta" ; 
- # - if [[ $TRAVIS_BRANCH = update-nuspec-for-builds && $STABLE = false ]]; then dotnet pack ./src/ReactiveDomain.nuspec -p:PackageVersion=3.3.3 --version-suffix "beta" ; fi;
-
-#after_success:  
- # - if [[ $TRAVIS_BRANCH = master ]]; then echo 'This is master after success'; fi;
- # - if [[ $TRAVIS_BRANCH = master && $TRAVIS_EVENT_TYPE = push ]]; then echo "Master and Push";
- # - if [[ $TRAVIS_BRANCH = master && $STABLE = true && $TRAVIS_EVENT_TYPE = api]]; then echo "Deploy Stable nuget";
