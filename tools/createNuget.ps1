@@ -11,17 +11,17 @@
 $masterString = "master"
 $branch = $env:TRAVIS_BRANCH
 
-# This changes when its a CI build or a manually triggered via the web UI
-# api means manual/stable build 
-# push -- means CI/unstable build
-$buildType = $env:TRAVIS_EVENT_TYPE    # api or push 
-
-# create and push nuget off of master branch
+# create and push nuget off of master branch ONLY
 if ($branch -ne $masterString)  
 {
   Write-Host ("Not a master branch. Will not create nuget")   
   Exit
 }
+
+# This changes when its a CI build or a manually triggered via the web UI
+# api --> means manual/stable build ;  push --> means CI/unstable build
+$buildType = $env:TRAVIS_EVENT_TYPE    
+
 
 Write-Host ("Powershell script location is " + $PSScriptRoot)
 
