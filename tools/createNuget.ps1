@@ -36,20 +36,27 @@ Write-Host ("Branch is file is " + $branch)
 
 $versionString = ""
 
-if ($branch -eq $masterString -and $isStable -eq "false" )
+if ($isStable -eq "false" )
 {
   $versionString = $RDVersion + "-beta"
   Write-Host ("This is an unstable master build. pushing unstable nuget version: " + $versionString)
   & $nuget pack $nuspec -Version $versionString
 }
 
-if ($branch -eq $masterString -and $isStable -eq "true" )
+if ($isStable -eq "true" )
 {
-  Write-Host ("This is a stable master build. pushing stable nuget version: " + $RDVersion)
-  & $nuget pack $nuspec -Version $RDVersion
+  $versionString = $RDVersion
+  Write-Host ("This is a stable master build. pushing stable nuget version: " + $versionString)
+  & $nuget pack $nuspec -Version $versionString
 }
 
+$nupkg = $PSScriptRoot + "\ReactiveDomain." + $versionString + ".nupkg"
+
+# TODO: Push the nuget to nuget.org
+#& $nuget push -Source "https://api.nuget.org/v3/index.json" -ApiKey $PKI_APIKEY $nupkg
 
 
-
-
+# TODO: Commit the change to build.props files and push to the reactivedomain repo
+# Set-Location -Path $PSScriptRoot + "\.."
+# git commit -m "increment assembly version"
+# git push origin master
