@@ -47,4 +47,3 @@ after_success:
  # - if [[ $TRAVIS_BRANCH = master ]]; then echo 'This is master after success'; fi;
  # - if [[ $TRAVIS_BRANCH = master && $TRAVIS_EVENT_TYPE = push ]]; then echo "Master and Push";
  # - if [[ $TRAVIS_BRANCH = master && $STABLE = true && $TRAVIS_EVENT_TYPE = api]]; then echo "Deploy Stable nuget";
- # - if [[ $STABLE = false ]]; then echo "Deploy Unstable nuget";
