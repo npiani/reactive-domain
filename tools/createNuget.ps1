@@ -1,3 +1,3 @@
 
 
-Write-Host ("Powershell test")
+Write-Host ("Powershell script location is " + $PSScriptRoot)
