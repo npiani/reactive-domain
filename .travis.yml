@@ -15,6 +15,9 @@ addons:
     packages:
       - powershell
 
+before_script:
+  - powershell -executionpolicy unrestricted -File ./tools/UpdateAssemblyVersion.ps1
+  
 script: 
   - echo $TRAVIS_BRANCH
   - echo $TRAVIS_BUILD_DIR
