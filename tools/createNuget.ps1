@@ -8,3 +8,5 @@ $ReactiveDomainDll = $PSScriptRoot + "\..\bld\Release\net472\ReactiveDomain.Core
 $RDVersion = (Get-Item $ReactiveDomainDll).VersionInfo.FileVersion
 
 Write-Host ("Reactive Domain version is " + $RDVersion)
+
+Write-Host ("Stable is " + $env:STABLE)
