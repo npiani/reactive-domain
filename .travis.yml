@@ -29,7 +29,7 @@ script:
   - dotnet test ./src/ReactiveDomain.Transport.Tests/ReactiveDomain.Transport.Tests.csproj
 
 after_success:
-  - powershell "-command ./tools/createNuget.ps1"
+  - powershell -executionpolicy unrestricted -File ./tools/createNuget.ps1
 #  - if [[ $TRAVIS_BRANCH = update-nuspec-for-builds && $STABLE = false ]]; then 
 #	  echo "This is line 2 of the if";
 #	  echo "this is line 3"; 
