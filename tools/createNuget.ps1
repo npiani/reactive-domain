@@ -7,9 +7,14 @@
 # Note: If build is unstable, a beta (pre release) version of the nuget will be pushed
 #       If build is stable, a stable (release) version will be pushed
 
-
-$branch = $env:TRAVIS_BRANCH
+# branch must be master to create a nuget
 $masterString = "master"
+$branch = $env:TRAVIS_BRANCH
+
+# This changes when its a CI build or a manually triggered via the web UI
+# api means manual/stable build 
+# push -- means CI/unstable build
+$buildType = $env:TRAVIS_EVENT_TYPE    # api or push 
 
 # create and push nuget off of master branch
 if ($branch -ne $masterString)  
@@ -24,11 +29,9 @@ $ReactiveDomainDll = $PSScriptRoot + "\..\bld\Release\net472\ReactiveDomain.Core
 $RDVersion = (Get-Item $ReactiveDomainDll).VersionInfo.FileVersion
 $nuspec = $PSScriptRoot + "\..\src\ReactiveDomain.nuspec"
 $nuget = $PSScriptRoot + "\..\src\.nuget\nuget.exe"
-$isStable = $env:STABLE
-
 
 Write-Host ("Reactive Domain version is " + $RDVersion)
-Write-Host ("Stable is " + $isStable)
+Write-Host ("Build type is " + $buildType)
 Write-Host ("nuspec file is " + $nuspec)
 Write-Host ("Branch is file is " + $branch)
 
@@ -36,14 +39,14 @@ Write-Host ("Branch is file is " + $branch)
 
 $versionString = ""
 
-if ($isStable -eq "false" )
+if ($buildType -eq "push" )
 {
   $versionString = $RDVersion + "-beta"
   Write-Host ("This is an unstable master build. pushing unstable nuget version: " + $versionString)
   & $nuget pack $nuspec -Version $versionString
 }
 
-if ($isStable -eq "true" )
+if ($buildType -eq "api" )
 {
   $versionString = $RDVersion
   Write-Host ("This is a stable master build. pushing stable nuget version: " + $versionString)
