@@ -8,7 +8,7 @@
 #       If build is stable, a stable (release) version will be pushed
 
 # branch must be master to create a nuget
-$masterString = "update-nuspec-for-builds"
+$masterString = "master"
 $branch = $env:TRAVIS_BRANCH
 
 # create and push nuget off of master branch ONLY
