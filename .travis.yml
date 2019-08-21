@@ -1,7 +1,6 @@
 sudo: required
 language: csharp
 os: windows
-
 mono: none
 
 branches:
