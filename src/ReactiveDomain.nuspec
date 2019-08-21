@@ -6,7 +6,7 @@
     <authors>PerkinElmer,Linedata</authors>
     <owners>PerkinElmer,Linedata</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <license type="expression">MIT</license>
     <description>Package includes all reactive domain assemblies</description>
     <copyright>Copyright © 2014-2019 PerkinElmer, Linedata Inc.</copyright>
     <dependencies>

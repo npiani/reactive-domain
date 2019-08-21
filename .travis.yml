@@ -10,6 +10,10 @@ branches:
     - master
     - /.*/
 
+addons:
+  apt:
+    packages:
+      - powershell
 
 script: 
   - echo $TRAVIS_BRANCH
@@ -23,10 +27,13 @@ script:
   - dotnet test ./src/ReactiveDomain.Foundation.Tests/ReactiveDomain.Foundation.Tests.csproj  
   - dotnet test ./src/ReactiveDomain.PrivateLedger.Tests/ReactiveDomain.PrivateLedger.Tests.csproj
   - dotnet test ./src/ReactiveDomain.Transport.Tests/ReactiveDomain.Transport.Tests.csproj
-  - if [[ $TRAVIS_BRANCH = update-nuspec-for-builds && $STABLE = false ]]; then 
-	  echo "This is line 2 of the if"
-	  echo "this is line 3"
-	fi;
+
+after_success:
+  - powershell "-command ./tools/createNuget.ps1"
+#  - if [[ $TRAVIS_BRANCH = update-nuspec-for-builds && $STABLE = false ]]; then 
+#	  echo "This is line 2 of the if";
+#	  echo "this is line 3"; 
+#	fi;
 
 #       ./tools/nuget.exe pack ./src/ReactiveDomain.nuspec -p:PackageVersion=3.3.4 --version-suffix "beta" ; 
  # - if [[ $TRAVIS_BRANCH = update-nuspec-for-builds && $STABLE = false ]]; then dotnet pack ./src/ReactiveDomain.nuspec -p:PackageVersion=3.3.3 --version-suffix "beta" ; fi;
