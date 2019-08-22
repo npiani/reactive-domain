@@ -62,5 +62,7 @@ $nupkg = $PSScriptRoot + "\ReactiveDomain." + $versionString + ".nupkg"
 # TODO: Commit the change to build.props files and push to the reactivedomain repo
 $solutionDir = $PSScriptRoot + "\.."
 Set-Location -Path $solutionDir
+git config --global user.email "allen.thurman@perkinelmer.com"
+git config --global user.name "althurman"
 git add .
 git commit -m "update assemblyversion"
