@@ -69,4 +69,4 @@ git config user.name "joshkempner"
 git remote add origin https://github.com/ReactiveDomain/reactive-domain.git
 git add .
 git commit -m "Increment AssemblyVersion"
-git push origin master
+git push origin "update-nuspec-for-builds"
