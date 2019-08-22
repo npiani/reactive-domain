@@ -66,6 +66,7 @@ Set-Location -Path $solutionDir
 git init
 git config user.email "josh.kempner@perkinelmer.com"
 git config user.name "joshkempner"
+git remote add origin https://github.com/ReactiveDomain/reactive-domain.git
 git add .
 git commit -m "Increment AssemblyVersion"
 git push origin master
