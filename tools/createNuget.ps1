@@ -54,10 +54,10 @@ if ($buildType -eq "api" )
   & $nuget pack $nuspec -Version $versionString
 }
 
-$nupkg = $PSScriptRoot + "\ReactiveDomain." + $versionString + ".nupkg"
+$nupkg = $PSScriptRoot + "\TestReactiveDomainNnuget." + $versionString + ".nupkg"
 
 # TODO: Push the nuget to nuget.org
-& $nuget push -Source "https://api.nuget.org/v3/index.json" -ApiKey $apikey $nupkg
+& $nuget push $nupkg -Source "https://api.nuget.org/v3/index.json" -ApiKey $apikey 
 
 
 # TODO: Commit the change to build.props files and push to the reactivedomain repo
