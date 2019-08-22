@@ -10,6 +10,7 @@
 # branch must be master to create a nuget
 $masterString = "update-nuspec-for-builds"
 $branch = $env:TRAVIS_BRANCH
+$apikey = $env:NugetOrgApiKey
 
 # create and push nuget off of master branch ONLY
 if ($branch -ne $masterString)  
@@ -56,7 +57,7 @@ if ($buildType -eq "api" )
 $nupkg = $PSScriptRoot + "\ReactiveDomain." + $versionString + ".nupkg"
 
 # TODO: Push the nuget to nuget.org
-#& $nuget push -Source "https://api.nuget.org/v3/index.json" -ApiKey $PKI_APIKEY $nupkg
+& $nuget push -Source "https://api.nuget.org/v3/index.json" -ApiKey $apikey $nupkg
 
 
 # TODO: Commit the change to build.props files and push to the reactivedomain repo
