@@ -64,7 +64,8 @@ $nupkg = $PSScriptRoot + "\..\TestReactiveDomainNnuget." + $versionString + ".nu
 $solutionDir = $PSScriptRoot + "\.."
 Set-Location -Path $solutionDir
 git init
-git config user.email "allen.thurman@perkinelmer.com"
-git config user.name "althurman"
+git config user.email "josh.kempner@perkinelmer.com"
+git config user.name "joshkempner"
 git add .
 git commit -m "Increment AssemblyVersion"
+git push origin master
