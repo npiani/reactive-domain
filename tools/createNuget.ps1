@@ -54,7 +54,7 @@ if ($buildType -eq "api" )
   & $nuget pack $nuspec -Version $versionString
 }
 
-$nupkg = $PSScriptRoot + "\TestReactiveDomainNnuget." + $versionString + ".nupkg"
+$nupkg = $PSScriptRoot + "\..\TestReactiveDomainNnuget." + $versionString + ".nupkg"
 
 # TODO: Push the nuget to nuget.org
 & $nuget push $nupkg -Source "https://api.nuget.org/v3/index.json" -ApiKey $apikey 
