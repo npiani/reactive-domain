@@ -68,4 +68,4 @@ git config user.email "josh.kempner@perkinelmer.com"
 git config user.name "joshkempner"
 git add .
 git commit -m "Increment AssemblyVersion"
-git push origin "update-nuspec-for-builds"
+git push origin "update-nuspec-for-builds" -v -f
