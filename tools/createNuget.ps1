@@ -8,7 +8,7 @@
 #       If build is stable, a stable (release) version will be pushed
 
 # branch must be master to create a nuget
-$masterString = "master"
+$masterString = "update-nuspec-for-builds"
 $branch = $env:TRAVIS_BRANCH
 
 # create and push nuget off of master branch ONLY
@@ -60,6 +60,7 @@ $nupkg = $PSScriptRoot + "\ReactiveDomain." + $versionString + ".nupkg"
 
 
 # TODO: Commit the change to build.props files and push to the reactivedomain repo
-# Set-Location -Path $PSScriptRoot + "\.."
-# git commit -m "increment assembly version"
-# git push origin master
+$solutionDir = $PSScriptRoot + "\.."
+Set-Location -Path $solutionDir
+git add .
+git commit -m "update assemblyversion"
