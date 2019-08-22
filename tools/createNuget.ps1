@@ -66,4 +66,4 @@ Set-Location -Path $solutionDir
 git config --global user.email "allen.thurman@perkinelmer.com"
 git config --global user.name "althurman"
 git add .
-git commit -m "update assemblyversion"
+git commit -m "Increment Assembly Version"
