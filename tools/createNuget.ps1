@@ -11,6 +11,7 @@
 $masterString = "update-nuspec-for-builds"
 $branch = $env:TRAVIS_BRANCH
 $apikey = $env:NugetOrgApiKey
+$githubToken = $env:GithubApiToken
 
 # create and push nuget off of master branch ONLY
 if ($branch -ne $masterString)  
@@ -63,9 +64,10 @@ $nupkg = $PSScriptRoot + "\..\TestReactiveDomainNnuget." + $versionString + ".nu
 # TODO: Commit the change to build.props files and push to the reactivedomain repo
 $solutionDir = $PSScriptRoot + "\.."
 Set-Location -Path $solutionDir
-git init
+#git init
 git config user.email "josh.kempner@perkinelmer.com"
 git config user.name "joshkempner"
 git add .
 git commit -m "Increment AssemblyVersion"
-git push origin "update-nuspec-for-builds" -v -f
+git remote add origin2 "https://" + $githubToken + "@github.com/ReactiveDomain/reactive-domain.git"
+git push origin2 "update-nuspec-for-builds"
