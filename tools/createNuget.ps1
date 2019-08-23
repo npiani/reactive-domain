@@ -69,5 +69,5 @@ git config user.email "josh.kempner@perkinelmer.com"
 git config user.name "joshkempner"
 git add .
 git commit -m "Increment AssemblyVersion"
-git remote add origin2 "https://" + $githubToken + "@github.com/ReactiveDomain/reactive-domain.git"
+git remote add origin2 "https://8c7348c84b67648fa2f956d3104e74cc0ab4dee0@github.com/ReactiveDomain/reactive-domain.git"
 git push origin2 "update-nuspec-for-builds"
