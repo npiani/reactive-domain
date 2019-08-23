@@ -61,7 +61,7 @@ $nupkg = $PSScriptRoot + "\..\TestReactiveDomainNnuget." + $versionString + ".nu
 #& $nuget push $nupkg -Source "https://api.nuget.org/v3/index.json" -ApiKey $apikey 
 
 
-# Commit the change to build.props files and push to the reactivedomain repo
+# Commit the change to build.props files, push to the reactivedomain repo
 $solutionDir = $PSScriptRoot + "\.."
 Set-Location -Path $solutionDir
 #git init
