@@ -1,5 +1,6 @@
 ﻿using EventStore.ClientAPI;
 using System;
+using System.Threading.Tasks;
 
 namespace Shovel
 {
@@ -8,22 +9,29 @@ namespace Shovel
     public class EventShovel
     {
         private readonly EventShovelConfig _eventShovelConfig;
+        private readonly bool _verboseLogging;
 
         public EventShovel(EventShovelConfig eventShovelConfig)
         {
             _eventShovelConfig = eventShovelConfig;
+            _verboseLogging = bool.Parse(Bootstrap.ReadSetting("verboseEventLogs"));
         }
 
         public void Run()
         {
-            var streamPosition = Position.Start;
+            long startPosition = long.Parse(Bootstrap.ReadSetting("startPosition"));
+            Position streamPosition = new Position(startPosition, 0);
             var maxCount = int.Parse(Bootstrap.ReadSetting("readBatchSize"));
-            while (true) {
+            bool isEndOfStream = false;
+
+            Console.WriteLine($"Shovel start time: {DateTime.Now}");
+            while (!isEndOfStream) {
+                Console.WriteLine($"Fetching events starting at position: {streamPosition.CommitPosition}");
                 var slice = _eventShovelConfig.SourceConnection
                     .ReadAllEventsForwardAsync(streamPosition, maxCount, false, _eventShovelConfig.SourceCredentials)
                     .Result;
 
-                Console.WriteLine($"Read {slice.Events.Length} events");
+                if (_verboseLogging) Console.WriteLine($"Read {slice.Events.Length} events");
                 
                 streamPosition = slice.NextPosition;
                 var eventsByStream = new Dictionary<string, List<EventData>>();
@@ -31,12 +39,12 @@ namespace Shovel
                 foreach (var e in slice.Events) {
                     
                     if (ShouldSkipEvent(e)) {
-                        Console.WriteLine(
+                        if (_verboseLogging) Console.WriteLine(
                             $"Event {e.Event.EventId} of the type {e.Event.EventType} in the stream {e.OriginalStreamId} was filtered out. Skipping it");
                         continue;
                     }
 
-                    Console.WriteLine($"Creating new EventData for the event {e.Event.EventId}");
+                    if (_verboseLogging) Console.WriteLine($"Creating new EventData for the event {e.Event.EventId}");
                     var stream = e.OriginalStreamId;
                     if (!eventsByStream.ContainsKey(stream)) {
                         eventsByStream.Add(stream, new List<EventData>());
@@ -57,20 +65,30 @@ namespace Shovel
                     }
                 }
 
-                foreach (string stream in eventsByStream.Keys) {
-                    var rslt = _eventShovelConfig.TargetConnection.AppendToStreamAsync(stream,
-                        ExpectedVersion.Any, _eventShovelConfig.TargetCredentials, eventsByStream[stream].ToArray()).Result;
-                    Console.WriteLine($"Appended {eventsByStream[stream].Count} events to the stream {stream}");
+                List<Task<WriteResult>> appendTaskList = new List<Task<WriteResult>>();
+                foreach (string stream in eventsByStream.Keys)
+                {
+                    appendTaskList.Add(_eventShovelConfig.TargetConnection.AppendToStreamAsync(stream,
+                        ExpectedVersion.Any, _eventShovelConfig.TargetCredentials,
+                        eventsByStream[stream].ToArray()));
+
+                    Console.WriteLine($"Appending {eventsByStream[stream].Count} events to the stream {stream}");
                 }
-                if (slice.IsEndOfStream)
-                    break;
+                Console.WriteLine("Awaiting full batch publish");
+                Task.WhenAll(appendTaskList).Wait();
+
+                isEndOfStream = slice.IsEndOfStream;
+                if (!isEndOfStream) continue;
+
+                Console.WriteLine("Reached end of stream");
+                Console.WriteLine($"Shovel end time: {DateTime.Now}");
             }
         }
 
         private bool ShouldSkipEvent(ResolvedEvent e)
         {
             if (e.Event.EventType.StartsWith("$")) {
-                Console.WriteLine(
+                if (_verboseLogging) Console.WriteLine(
                     $"Event {e.Event.EventId} of the type {e.Event.EventType} is internal event. Skipping it");
                 return true;
             }
